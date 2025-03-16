@@ -1,6 +1,7 @@
 import datetime
 import os
 import shutil
+import sys
 import requests
 from datetime import datetime
 
@@ -17,9 +18,10 @@ query_params = {
     "page": "1"
 }
 #==============================参数配置end==============================================
-
 source_folder = f"{base_folder}\\current"  # 源文件夹
 backup_base_folder = f"{base_folder}\\backup"  # 备份文件夹
+os.makedirs(base_folder, exist_ok=True)  # 确保基础文件夹存在
+os.makedirs(source_folder, exist_ok=True)  # 确保源文件夹存在
 # 请求地址
 search_url = "https://wallhaven.cc/api/v1/search"
 # 图片URL列表
@@ -105,3 +107,4 @@ if __name__ == "__main__":
     print("url获取完成，开始下载新图片...")
     download_new_images(image_urls)
     print("所有操作完成")
+    sys.exit(0)
